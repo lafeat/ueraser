@@ -1,5 +1,5 @@
-# UEraser
-This repository contains the code of paper "UEraser: Error-maximizing Augmentation Wipes out Unlearning Poisons".
+# Learning the unlearnable (UEraser)
+This repository contains the code of paper "Learning the unlearnable: Adversarial augmentations suppress unlearnable example attacks".
 <img src="img/overview.png" width="800px">
 
 ### General Usage of UEraser
