@@ -1,12 +1,15 @@
 # Learning the unlearnable (UEraser)
-This repository contains the code of paper "Learning the unlearnable: Adversarial augmentations suppress unlearnable example attacks".
+
+This repository contains the code of our paper
+[Learning the Unlearnable: Adversarial Augmentations Suppress Unlearnable Example Attacks](https://arxiv.org/abs/2303.15127).
+
 <img src="img/overview.png" width="800px">
 
 ### General Usage of UEraser
 ```python
 import torch
 import torchvision as tv
-from UEraser_func import adversarial_augmentation_loss
+from ueraser import adversarial_augmentation_loss
 # model
 model = ...  # a PyTorch model
 # optimizer

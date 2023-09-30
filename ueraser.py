@@ -11,15 +11,6 @@ from PIL import Image
 import kornia.augmentation as K
 
 
-UEraser = K.AugmentationSequential(
-    K.RandomPlasmaBrightness(
-        roughness=(0.1, 0.7), intensity=(0.0, 1.0),
-        same_on_batch=False, p=0.5, keepdim=True),
-    # K.RandomPlasmaContrast(roughness=(0.1, 0.7), p=0.5),
-    K.RandomChannelShuffle(same_on_batch=False, p=0.5, keepdim=True),
-    K.auto.TrivialAugment())
-
-
 def jpeg_compression(
     in_tensor: Tensor, quality: Optional[int] = None
 ) -> Tensor:
@@ -73,7 +64,6 @@ def jpeg_compression(
     # remove the padding
     if bpad:
         tensor = tensor[:-bpad]
-    tensor = tensor
     # a surrogate for the gradient of the JPEG compression
     return (in_tensor - in_tensor.detach()) + tensor
 
@@ -87,6 +77,14 @@ class JPEGLayer(torch.nn.Module):
         return jpeg_compression(tensor, self.quality)
 
 
+UEraser = K.AugmentationSequential(
+    K.RandomPlasmaBrightness(
+        roughness=(0.1, 0.7), intensity=(0.0, 1.0),
+        same_on_batch=False, p=0.5, keepdim=True),
+    # K.RandomPlasmaContrast(roughness=(0.1, 0.7), p=0.5),
+    K.RandomChannelShuffle(same_on_batch=False, p=0.5, keepdim=True),
+    K.auto.TrivialAugment(),
+)
 UEraserJPEG =K.AugmentationSequential(
     K.RandomPlasmaBrightness(
         roughness=(0.3, 0.7), intensity=(0.5, 1.0),
@@ -108,7 +106,7 @@ class Criterion(Protocol):
 def adversarial_augmentation_loss(
     model: nn.Module, images: Tensor, labels: Tensor,
     repeat: int, criterion: Criterion = torch.nn.functional.cross_entropy,
-    augs: Optional[torch.nn.Module] = UEraser,
+    augs: torch.nn.Module = UEraser,
 ) -> Tensor:
     """
     This function computes the adversarial augmentation loss.
