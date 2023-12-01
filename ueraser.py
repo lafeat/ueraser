@@ -77,11 +77,13 @@ class JPEGLayer(torch.nn.Module):
         return jpeg_compression(tensor, self.quality)
 
 
+# You can change p to apply stronger augmentations
+# as it may result in loss of acc or difficulty of convergence
 UEraser = K.AugmentationSequential(
     K.RandomPlasmaBrightness(
-        roughness=(0.1, 0.7), intensity=(0.0, 1.0),
+        roughness=(0.3, 0.7), intensity=(0.5, 1.0),
         same_on_batch=False, p=0.5, keepdim=True),
-    # K.RandomPlasmaContrast(roughness=(0.1, 0.7), p=0.5),
+    # K.RandomPlasmaContrast(roughness=(0.3, 0.7), p=0.5),
     K.RandomChannelShuffle(same_on_batch=False, p=0.5, keepdim=True),
     K.auto.TrivialAugment(),
 )
