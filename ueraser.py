@@ -83,7 +83,7 @@ UEraser = K.AugmentationSequential(
     K.RandomPlasmaBrightness(
         roughness=(0.3, 0.7), intensity=(0.5, 1.0),
         same_on_batch=False, p=0.5, keepdim=True),
-    # K.RandomPlasmaContrast(roughness=(0.3, 0.7), p=0.5),
+    K.RandomPlasmaContrast(roughness=(0.3, 0.7), p=0.5),
     K.RandomChannelShuffle(same_on_batch=False, p=0.5, keepdim=True),
     K.auto.TrivialAugment(),
 )
@@ -92,7 +92,7 @@ UEraserJPEG =K.AugmentationSequential(
         roughness=(0.3, 0.7), intensity=(0.5, 1.0),
         same_on_batch=False, p=0.5, keepdim=True,
     ),
-    # K.RandomPlasmaContrast(roughness=(0.3, 0.7), p=0.5),
+    K.RandomPlasmaContrast(roughness=(0.3, 0.7), p=0.5),
     K.RandomChannelShuffle(same_on_batch=False, p=0.5, keepdim=True),
     K.auto.TrivialAugment(),
     JPEGLayer(10),
