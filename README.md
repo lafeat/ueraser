@@ -78,8 +78,7 @@ The parameter choices for the above commands are as follows:
 @inproceedings{qin2023iccvw,
   title={Learning the unlearnable: Adversarial augmentations suppress unlearnable example attacks},
   author={Qin, Tianrui and Gao, Xitong and Zhao, Juanjuan and Ye, Kejiang and Xu, Cheng-Zhong},
-  booktitle={4th Workshop on Adversarial Robustness In the Real World (AROW),
-ICCV 2023},
+  booktitle={4th Workshop on Adversarial Robustness In the Real World (AROW), ICCV 2023},
   url={https://iccv23-arow.github.io/pdf/arow-0025.pdf},
   year={2023}
 }
